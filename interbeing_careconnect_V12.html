@@ -163,8 +163,10 @@ button{font:inherit}
 .manifesto-copy .manifesto-lead{margin:0 0 20px;color:var(--indigo);font-family:var(--editorial);font-size:28px;line-height:1.28}
 .line-link{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;margin-top:24px;padding-bottom:8px;border-bottom:1px solid var(--indigo);color:var(--indigo);font-size:13px;font-weight:750}
 .line-link span{color:var(--teal);font-size:17px}
-.manifesto-words{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:140px;color:rgba(48,56,88,.14);font-size:clamp(36px,7.5vw,112px);font-weight:820;letter-spacing:-.05em;white-space:nowrap}
-.manifesto-words i{width:13px;height:13px;background:var(--teal);border-radius:50%;opacity:.7}
+.manifesto-words{width:100%;margin-top:140px;overflow:hidden;color:rgba(48,56,88,.14);white-space:nowrap;mask-image:linear-gradient(90deg,transparent,black 5%,black 95%,transparent)}
+.manifesto-words-track{display:flex;width:max-content;will-change:transform;animation:manifestoRoll 24s linear infinite}
+.manifesto-words-group{display:flex;flex:none;align-items:center;gap:clamp(20px,2.2vw,42px);padding-right:clamp(20px,2.2vw,42px);font-size:clamp(72px,9vw,148px);font-weight:820;line-height:.82;letter-spacing:-.055em}
+.manifesto-words i{width:clamp(9px,1vw,15px);height:clamp(9px,1vw,15px);flex:none;background:var(--teal);border-radius:50%;opacity:.72}
 
 .work-section{position:relative;padding:138px 0;background:var(--indigo-deep);color:var(--white);overflow:hidden}
 .work-section::before{content:"";position:absolute;inset:0;opacity:.13;background:radial-gradient(circle at 20% 10%,var(--violet),transparent 35%),radial-gradient(circle at 90% 80%,var(--teal),transparent 35%)}
@@ -308,6 +310,7 @@ button{font:inherit}
 
 @keyframes marquee{to{transform:translateX(-50%)}}
 @keyframes marqueeNames{to{transform:translateX(-45%)}}
+@keyframes manifestoRoll{to{transform:translate3d(-50%,0,0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
 
 @media (max-width:1050px){
@@ -349,7 +352,7 @@ button{font:inherit}
   .hero-portrait,.hero-symbol{min-height:390px}.symbol-field{width:390px;max-width:108vw}.symbol-statement{display:none}.portrait-window{inset:35px 0 42px 5%;border-radius:45% 45% 20% 40%}.portrait-label{left:12%;bottom:60px}.hero-bottom{gap:10px}.hero-bottom span{width:24px}.hero-bottom p{font-size:9px}
   .trust-section{padding:40px 0 50px}.manifesto-section,.work-section,.method-section,.founder-section,.tewora-bridge,.perspectives-section,.conversation-section{padding-block:82px}
   .manifesto-heading h2,.work-heading h2,.method-copy h2,.founder-copy h2,.bridge-copy h2,.perspectives-heading h2,.conversation-inner h2{font-size:clamp(42px,12vw,58px)}
-  .manifesto-copy .manifesto-lead{font-size:25px}.manifesto-words{justify-content:flex-start;gap:14px;margin-top:72px;font-size:36px;transform:translateX(-8px)}.manifesto-words i{width:7px;height:7px}
+  .manifesto-copy .manifesto-lead{font-size:25px}.manifesto-words{margin-top:72px;mask-image:linear-gradient(90deg,transparent,black 3%,black 97%,transparent)}.manifesto-words-track{animation-duration:17s}.manifesto-words-group{gap:18px;padding-right:18px;font-size:clamp(64px,21vw,96px);line-height:.86}.manifesto-words i{width:8px;height:8px}
   .work-heading{margin-bottom:52px}.work-row{grid-template-columns:34px 1fr;gap:12px;min-height:0;padding:34px 0}.work-title h3{font-size:40px}.work-row>p{font-size:14px}.work-mark{right:-20px;width:80px;height:80px}
   .method-grid{gap:55px}.method-visual{width:calc(100% - 12px)}.method-point{width:46px;height:46px;padding:7px 0 6px}.method-point strong{font-size:16px}.method-point small{font-size:6px}.method-centre strong{font-size:23px}.method-centre span{font-size:10px}.method-instruction{font-size:8px;letter-spacing:.08em}.method-detail{min-height:190px;padding:22px}.method-detail h3{font-size:31px}
   .founder-image{min-height:470px}.founder-image>img{right:0;width:100%}.founder-orbit{inset:-30px -18px -25px -28px}.experience-stamp{right:-5px;bottom:26px;padding:14px}.experience-stamp strong{font-size:29px}.experience-stamp span{font-size:8px}
@@ -360,7 +363,7 @@ button{font:inherit}
 }
 
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}[data-reveal]{opacity:1;transform:none}
+  html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}[data-reveal]{opacity:1;transform:none}.manifesto-words{mask-image:none}.manifesto-words-track{width:100%;animation:none!important;will-change:auto}.manifesto-words-group{width:100%;justify-content:center;flex-wrap:wrap;padding:0 16px;white-space:normal}.manifesto-words-group:nth-child(2){display:none}
 }
 
 </style>
@@ -470,7 +473,12 @@ button{font:inherit}
           <a class="line-link" href="#method">Discover the E-RAMM methodology <span>↘</span></a>
         </div>
       </div>
-      <div class="manifesto-words" aria-hidden="true"><span>INSIGHT</span><i></i><span>PRACTICE</span><i></i><span>CULTURE</span></div>
+      <div class="manifesto-words" role="img" aria-label="Insight, practice and culture">
+        <div class="manifesto-words-track" aria-hidden="true">
+          <div class="manifesto-words-group"><span>INSIGHT</span><i></i><span>PRACTICE</span><i></i><span>CULTURE</span><i></i></div>
+          <div class="manifesto-words-group"><span>INSIGHT</span><i></i><span>PRACTICE</span><i></i><span>CULTURE</span><i></i></div>
+        </div>
+      </div>
     </section>
 
     <section class="work-section" id="work">
